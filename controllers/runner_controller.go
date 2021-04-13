@@ -623,6 +623,7 @@ func (r *RunnerReconciler) newPod(runner v1alpha1.Runner) (corev1.Pod, error) {
 					Resources: runner.Spec.Resources,
 				},
 			},
+			RuntimeClassName: runner.Spec.RuntimeClassName,
 		},
 	}
 
