@@ -619,6 +619,9 @@ func (r *RunnerReconciler) newPod(runner v1alpha1.Runner) (corev1.Pod, error) {
 					SecurityContext: &corev1.SecurityContext{
 						// Runner need to run privileged if it contains DinD
 						Privileged: runner.Spec.DockerdWithinRunnerContainer,
+						Capabilities: &corev1.Capabilities{
+							Add: []corev1.Capability{corev1.Capability("SYS_ADMIN")},
+						},
 					},
 					Resources: runner.Spec.Resources,
 				},
